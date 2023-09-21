@@ -1,0 +1,45 @@
+<template>
+    <div class="box_all">
+    <div class="col" v-for="(n,i) in travelList" :key="n">
+      <div class="card" style="width: 25rem;" >
+        <img :src="n.img" class="card-img-top">
+        <div class="card-body">
+          <h3 class="card-title">{{ n.name }}</h3>
+          <p>ราคาโต๊ะ : {{n.price}}</p>
+          <h6>***จำกัด 5 คนต่อ 1 โต๊ะ***</h6>
+
+          <a class="btn btn-primary" @click="list_local_control(i.name, i.quantity)"> จองโต๊ะ </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</template>
+
+<script setup>
+
+import { ref } from 'vue';
+
+const travelList=ref([
+    {name:'East Bar',     price:1599, img:"data:image/jpeg;base64,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", quantity: 0 ,
+    text_box:' อากาศดีขนาดนี้จะไม่แวะมาหาจริงๆหร๊ออออ🍺'
+    },])
+
+
+</script>
+
+<style>
+
+.card-img-top{
+height: 100%;
+padding: 25px;
+
+}
+.box_all{
+justify-content: center;
+align-items: center;
+margin-left: 30%;
+text-align: center
+}
+
+</style>
